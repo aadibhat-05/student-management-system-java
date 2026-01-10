@@ -1,18 +1,73 @@
-## Getting Started
+# Student Management System (Java)
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+A console-based backend application built in Java that allows users to manage student records using CRUD operations.
 
-## Folder Structure
+This project demonstrates core backend development concepts such as Object-Oriented Programming, data validation, clean architecture, and safe collection handling.
 
-The workspace contains two folders by default, where:
+---
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+## 🚀 Features
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+- Add a new student  
+- View all students  
+- Update student details  
+- Delete a student  
+- Prevent duplicate student IDs  
+- Input validation for all numeric fields  
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+---
 
-## Dependency Management
+## 🛠️ Tech Stack
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+- Java  
+- OOP (Encapsulation, Constructors, Methods)  
+- Java Collections (List, ArrayList, Iterator)  
+- Git & GitHub  
+
+---
+
+## 📁 Project Structure
+src
+└── com
+└── sms
+├── model → Student.java
+├── service → StudentService.java
+└── main → Main.java
+
+---
+
+## 🧠 Key Concepts Used
+
+- **Encapsulation** – Private fields with getters & setters  
+- **CRUD Operations** – Create, Read, Update, Delete  
+- **Iterator Pattern** – Safe removal from collections  
+- **Input Validation** – Prevents crashes and invalid input  
+- **Separation of Concerns** – Model, Service, and Main layers  
+
+---
+
+## ▶ How to Run
+
+1. Install JDK 17 or later  
+2. Clone the repository  
+3. Open the project in VS Code / IntelliJ  
+4. Run `Main.java`  
+5. Use the menu to manage students  
+
+---
+
+## 📌 Future Improvements
+
+- Convert to Spring Boot REST API  
+- Add database (MySQL/PostgreSQL)  
+- Add authentication  
+- Build frontend UI  
+
+---
+
+## 👨‍💻 Author
+
+Aadi Harnad Bhat  
+Computer Science Engineering (AI) 
+
+
