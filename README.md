@@ -1,73 +1,65 @@
-# Student Management System (Java)
+Student Management System – Spring Boot REST API
 
-A console-based backend application built in Java that allows users to manage student records using CRUD operations.
+This is a simple Student Management System backend built using Spring Boot.
+The project provides a REST API that allows adding, viewing, updating, and deleting student records. It is designed to demonstrate how a basic backend application is structured using controllers, services, and REST endpoints.
 
-This project demonstrates core backend development concepts such as Object-Oriented Programming, data validation, clean architecture, and safe collection handling.
+This project was built as part of learning backend development with Java and Spring Boot.
 
----
+Features:
 
-## 🚀 Features
+Add a new student
 
-- Add a new student  
-- View all students  
-- Update student details  
-- Delete a student  
-- Prevent duplicate student IDs  
-- Input validation for all numeric fields  
+View all students
 
----
+Update an existing student
 
-## 🛠️ Tech Stack
+Delete a student
 
-- Java  
-- OOP (Encapsulation, Constructors, Methods)  
-- Java Collections (List, ArrayList, Iterator)  
-- Git & GitHub  
+Data is exchanged using JSON over HTTP
 
----
+Follows a clean layered structure (Controller, Service, Model)
 
-## 📁 Project Structure
-src
-└── com
-└── sms
-├── model → Student.java
-├── service → StudentService.java
-└── main → Main.java
+Technologies Used:
 
----
+Java 17
 
-## 🧠 Key Concepts Used
+Spring Boot
 
-- **Encapsulation** – Private fields with getters & setters  
-- **CRUD Operations** – Create, Read, Update, Delete  
-- **Iterator Pattern** – Safe removal from collections  
-- **Input Validation** – Prevents crashes and invalid input  
-- **Separation of Concerns** – Model, Service, and Main layers  
+Maven
 
----
+REST API
 
-## ▶ How to Run
+JSON
 
-1. Install JDK 17 or later  
-2. Clone the repository  
-3. Open the project in VS Code / IntelliJ  
-4. Run `Main.java`  
-5. Use the menu to manage students  
+API Endpoints:
 
----
+Method	   Endpoint	        Description
+GET	       /students        Get all students
+POST	   /students        Add a new student
+PUT	       /students/{id}	Update a student
+DELETE	   /students/{id}	Delete a student
 
-## 📌 Future Improvements
+Sample JSON for Adding a Student:
 
-- Convert to Spring Boot REST API  
-- Add database (MySQL/PostgreSQL)  
-- Add authentication  
-- Build frontend UI  
+{
+  "id": 1,
+  "name": "Aadi",
+  "age": 19,
+  "course": "CSE"
+}
 
----
+How to Run the Project
 
-## 👨‍💻 Author
+1. Clone the repository
 
-Aadi Harnad Bhat  
-Computer Science Engineering (AI) 
+2. Open the project folder in VS Code or any IDE
 
+3. Run the following command in the project directory:
+mvn spring-boot:run
 
+4. The server will start at:
+http://localhost:8080
+
+Purpose of This Project:
+
+This project was created to understand how backend systems work, how REST APIs are built, and how data flows between the client and the server. It focuses on core backend concepts rather than UI.
