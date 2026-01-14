@@ -1,46 +1,44 @@
-Student Management System – Spring Boot REST API
+# Student Management System Spring Boot REST API
 
 This is a simple Student Management System backend built using Spring Boot.
-The project provides a REST API that allows adding, viewing, updating, and deleting student records. It is designed to demonstrate how a basic backend application is structured using controllers, services, and REST endpoints.
+The project provides a REST API to add, view, update, and delete student records.
 
-This project was built as part of learning backend development with Java and Spring Boot.
+This project was created as part of learning backend development with Java and Spring Boot.
 
-Features:
+## Features
 
-Add a new student
+- Add a new student
+- View all students
+- Update an existing student
+- Delete a student
+- Uses JSON for data exchange
+- Follows Controller, Service, and Model structure
 
-View all students
+## Technologies Used
 
-Update an existing student
+- Java 17
+- Spring Boot
+- Maven
+- REST API
+- JSON
 
-Delete a student
+## API Endpoints
 
-Data is exchanged using JSON over HTTP
+GET /students  
+Returns all students  
 
-Follows a clean layered structure (Controller, Service, Model)
+POST /students  
+Adds a new student  
 
-Technologies Used:
+PUT /students/{id}  
+Updates a student  
 
-Java 17
+DELETE /students/{id}  
+Deletes a student  
 
-Spring Boot
+## Sample JSON for Adding a Student
 
-Maven
-
-REST API
-
-JSON
-
-API Endpoints:
-
-Method	   Endpoint	        Description
-GET	       /students        Get all students
-POST	   /students        Add a new student
-PUT	       /students/{id}	Update a student
-DELETE	   /students/{id}	Delete a student
-
-Sample JSON for Adding a Student:
-
+```json
 {
   "id": 1,
   "name": "Aadi",
@@ -48,18 +46,20 @@ Sample JSON for Adding a Student:
   "course": "CSE"
 }
 
-How to Run the Project
+How to Run the Project:
 
 1. Clone the repository
 
 2. Open the project folder in VS Code or any IDE
 
-3. Run the following command in the project directory:
-mvn spring-boot:run
-
-4. The server will start at:
-http://localhost:8080
-
+3. Run the following command:
+   
+   mvn spring-boot:run
+4. Server will start at:
+   
+   http://localhost:8080
+   
 Purpose of This Project:
 
-This project was created to understand how backend systems work, how REST APIs are built, and how data flows between the client and the server. It focuses on core backend concepts rather than UI.
+This project was built to understand how backend systems work, how REST APIs are implemented, and how data flows between client and server. The focus is on backend logic rather than user interface.
+
