@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Management System</title>
+
+    <style>
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 40px;
+}
+
+input {
+    margin: 5px;
+    padding: 6px;
+}
+
+button {
+    margin: 5px;
+    padding: 6px 10px;
+    cursor: pointer;
+}
+
+li {
+    margin: 6px 0;
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+}
+
+h1 {
+    text-align: center;
+}
+
+h2 {
+    margin-top: 20px;
+}
+
+#statusMessage {
+    color: green;
+    font-weight: bold;
+}
+
+.edit-btn {
+    background-color: #3498db;
+    color: white;
+    border: none;
+}
+
+.delete-btn {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+}
+
+</style>
+
+</head>
+<body>
+    <div class="container">
+    <h1>Student Management System</h1>
+    <h2>Add Student</h2>
+    <input type="number" id="id" placeholder="ID">
+    <input type="text" id="name" placeholder="Name">
+    <input type="number" id="age" placeholder="Age">
+    <input type="text" id="course" placeholder="Course">
+    <button id="addBtn" onclick="addStudent()">Add Student</button>
+    <h2>Students</h2>
+    <p id="statusMessage"></p>
+    <button onclick="loadStudents()">View Students</button>
+    <ul id="studentList"></ul>
+<script>
+    const API_URL = "http://localhost:8080/students";
+    let editMode = false;
+
+function loadStudents() {
+    fetch(API_URL)
+        .then(response => response.json())
+        .then(data => {
+
+            const list = document.getElementById("studentList");
+            list.innerHTML = "";
+
+            if(data.length === 0){
+                list.innerHTML = "<li>No students available</li>";
+                return;
+            }
+
+           data.forEach(student => {
+
+    const li = document.createElement("li");
+
+    li.textContent = student.name + " (" + student.course + ") ";
+
+    // CREATE DELETE BUTTON
+    const delBtn = document.createElement("button");
+    delBtn.textContent = "Delete";
+    delBtn.className = "delete-btn";
+
+    delBtn.onclick = () => {
+        fetch(API_URL + "/" + student.id, {
+            method: "DELETE"
+        })
+        .then(() => {
+            showMessage("Student deleted");
+            loadStudents();
+        });
+    };
+
+    // CREATE EDIT BUTTON
+    const editBtn = document.createElement("button");
+    editBtn.textContent = "Edit";
+    editBtn.className = "edit-btn";
+
+    editBtn.onclick = () => {
+        document.getElementById("id").value = student.id;
+        document.getElementById("name").value = student.name;
+        document.getElementById("age").value = student.age;
+        document.getElementById("course").value = student.course;
+        document.getElementById("addBtn").textContent = "Update Student";
+        editMode = true;
+        document.getElementById("id").disabled = true;
+
+    };
+
+    li.appendChild(editBtn);
+    li.appendChild(delBtn);
+    list.appendChild(li);
+});
+
+        });
+}
+function addStudent(){
+    const btn = document.getElementById("addBtn");
+    btn.disabled = true;
+    const student = {
+        id: document.getElementById("id").value,
+        name: document.getElementById("name").value,
+        age: document.getElementById("age").value,
+        course: document.getElementById("course").value
+    };
+    fetch(API_URL)
+        .then(r => r.json())
+        .then(list => {
+            const exists = list.find(s => s.id == student.id);
+            if(editMode){
+                // UPDATE (PUT)
+                fetch(API_URL + "/" + student.id, {
+                    method:"PUT",
+                    headers:{ "Content-Type":"application/json" },
+                    body: JSON.stringify(student)
+                })
+                .then(()=> {
+                clearForm();
+                showMessage("Student saved");
+                loadStudents();
+                btn.disabled = false;
+
+                editMode = false;
+                document.getElementById("addBtn").textContent = "Add Student";
+                document.getElementById("id").disabled = false;
+                });
+
+            } else {
+                // ADD (POST)
+                fetch(API_URL, {
+                    method:"POST",
+                    headers:{ "Content-Type":"application/json" },
+                    body: JSON.stringify(student)
+                })
+                .then(()=> {
+                clearForm();
+                showMessage("Student saved");
+                loadStudents();
+                btn.disabled = false;
+                });
+
+            }
+        });
+}
+function clearForm(){
+
+    document.getElementById("id").value = "";
+    document.getElementById("name").value = "";
+    document.getElementById("age").value = "";
+    document.getElementById("course").value = "";
+
+}
+function showMessage(msg){
+
+    const status = document.getElementById("statusMessage");
+    status.textContent = msg;
+
+    setTimeout(()=>{
+        status.textContent = "";
+    },2000);
+
+}
+
+window.onload = loadStudents;
+
+</script>
+</div>
+</body>
+</html>
